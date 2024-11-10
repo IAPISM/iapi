@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienestar IA - Modo Alfa</title>
     <style>
-        /* Estilos generales para toda la página */
+        /* Estilos generales */
         body {
             font-family: 'Courier New', Courier, monospace;
             color: #ffffff;
@@ -15,23 +15,23 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            padding: 0 10px; /* Añadido para evitar bordes en móviles */
+            padding: 0 5px; /* Ajuste para evitar bordes en móviles */
             overflow: hidden;
         }
 
-        /* Adaptación de la estructura para diferentes tamaños */
+        /* Estructura adaptable para diferentes pantallas */
         .container {
             text-align: center;
-            max-width: 90vw;
+            max-width: 95vw;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
-            background: rgba(0, 0, 0, 0.4); /* Fondo sutil para resaltar el contenido */
+            background: rgba(0, 0, 0, 0.6); /* Fondo semitransparente */
         }
 
-        /* Efecto de máquina de escribir */
+        /* Efecto máquina de escribir */
         .typing-text {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             white-space: nowrap;
             overflow: hidden;
             border-right: 3px solid #ffffff;
@@ -39,17 +39,10 @@
             max-width: 100%;
         }
 
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
+        @keyframes typing { from { width: 0; } to { width: 100%; } }
+        @keyframes blink-caret { from, to { border-color: transparent; } 50% { border-color: #ffffff; } }
 
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: #ffffff; }
-        }
-
-        /* Botón de Conectar (efecto de latido) */
+        /* Botón de Conectar con efecto de latido */
         .btn-heartbeat {
             background: linear-gradient(135deg, #00acee, #007bb5);
             color: #ffffff;
@@ -66,10 +59,7 @@
             margin-top: 20px;
         }
 
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
+        @keyframes heartbeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
 
         /* Estilos adicionales */
         .slogan {
@@ -86,12 +76,9 @@
             animation: fadeIn 3s ease-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* Ventana emergente de Conectar */
+        /* Ventana emergente */
         .modal {
             display: none;
             position: fixed;
@@ -100,33 +87,38 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.4);
-            padding-top: 10vh;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding-top: 5vh;
             overflow: auto;
         }
 
         .modal-content {
             background-color: #333;
-            padding: 20px;
-            margin: 0 auto;
+            padding: 15px;
+            margin: auto;
             border-radius: 10px;
             width: 90%;
-            max-width: 500px;
-            text-align: center;
+            max-width: 450px;
             color: #ffffff;
             box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
             animation: fadeInModal 0.5s ease;
         }
 
         .modal-header {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: bold;
+            color: #00acee;
         }
 
         .modal-body {
-            font-size: 1.1rem;
+            font-size: 1rem;
             margin-top: 10px;
+            color: #ffffff;
         }
+
+        /* Estilos de párrafos alternos en ventana emergente */
+        .modal-body p:nth-child(odd) { color: #b3cde0; }
+        .modal-body p:nth-child(even) { color: #d9f2ff; }
 
         .modal-footer {
             margin-top: 20px;
@@ -141,28 +133,21 @@
             cursor: pointer;
         }
 
-        .close:hover, .close:focus {
-            color: #ffffff;
-            text-decoration: none;
-            cursor: pointer;
-        }
+        .close:hover, .close:focus { color: #ffffff; text-decoration: none; }
 
         /* Mostrar ventana emergente */
-        .modal.show {
-            display: block;
-        }
+        .modal.show { display: block; }
 
         /* Animación para la ventana emergente */
         @keyframes fadeInModal {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="typing-text">Bienvenido a Bienestar IAPI - Modo Alfa</h1>
+        <h1 class="typing-text">Bienvenido a Bienestar y IAPI - Modo Alfa</h1>
         <p class="slogan">"Un espacio de apoyo, descubrimiento y guía emocional, potenciado por inteligencia artificial".</p>
         <p class="footer-note">Descubre una nueva visión del bienestar. Conéctate y da el primer paso.</p>
         
