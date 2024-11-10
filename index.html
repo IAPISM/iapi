@@ -6,54 +6,54 @@
     <title>¡Bienvenido a IAPI!</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap');
-
         /* Estilos generales */
         body {
             font-family: 'Montserrat', sans-serif;
             font-size: 15px;
-            color: #34495e; /* Azul oscuro suave */
+            color: #34495e;
             line-height: 1.5;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             text-align: center;
-            background-color: #ecf0f1; /* Fondo neutro y tranquilo */
+            background-color: #f0f3f4;
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100vh;
         }
-
-        /* Overlay para el contenido */
+        
         .overlay {
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(255, 255, 255, 0.98);
             border-radius: 12px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
-            max-width: 700px;
-            padding: 30px;
-            text-align: left;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            padding: 40px;
+            text-align: center;
             position: relative;
+            overflow: hidden;
         }
 
-        /* Encabezado */
+        /* Encabezado animado */
         h1 {
             font-size: 36px;
             color: #2c3e50;
-            text-align: center;
             margin-bottom: 20px;
+            animation: fadeIn 2s;
         }
 
-        /* Párrafo */
+        /* Párrafo animado */
         p {
             font-weight: 300;
             color: #34495e;
             text-align: justify;
             margin: 0 auto 20px;
+            animation: fadeIn 2.5s;
         }
 
-        /* Botón de Conectar */
+        /* Botón interactivo */
         #btn-conectar {
             font-size: 20px;
-            background-color: #2980b9; /* Azul con toque profesional */
+            background-color: #2980b9;
             color: #ffffff;
             border: 2px solid #2980b9;
             padding: 12px 24px;
@@ -65,21 +65,33 @@
             font-weight: bold;
             box-shadow: 0 8px 20px rgba(0, 122, 255, 0.3);
             transition: all 0.3s ease;
+            animation: pulse 2s infinite;
         }
 
         #btn-conectar:hover {
-            background-color: #3498db; /* Azul más claro al pasar el ratón */
-            color: #ffffff;
+            background-color: #3498db;
             border-color: #3498db;
             box-shadow: 0 10px 25px rgba(0, 122, 255, 0.5);
         }
 
-        /* Indicador de modo alfa */
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Indicador de versión */
         .modo-alfa {
             position: absolute;
             top: 10px;
             right: 10px;
-            background-color: #f39c12; /* Color naranja sutil */
+            background-color: #f39c12;
             color: #fff;
             font-size: 12px;
             padding: 4px 10px;
@@ -98,47 +110,45 @@
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSd4ezktO9KrqSvanqdVJ5H_UFWQ_KlGLItZhxBlCpZ8Vz8QJQ/viewform" id="btn-conectar" target="_blank">Conectar</a>
     </div>
 
-    <!-- Efecto de escritura -->
+    <!-- Efecto de sonido e interacción animada -->
+    <audio id="audio-click" src="https://example.com/click-sound.mp3" preload="auto"></audio>
     <script>
+        // Animación de escritura
         const titulo = document.getElementById("titulo-animado");
         const parrafo = document.getElementById("parrafo-animado");
         const textoTitulo = "IAPI Salud Mental";
         const textoParrafo = `
-            Hay tantas maneras de entender nuestra propia existencia.
-            Cada persona es un universo único y particular.
+            ¿Necesitas orientación en el mundo de las psicoterapias?
+            Aquí encontrarás el apoyo que necesitas.
             
-            Yo existo con el propósito de ser un puente.
-            Soy un instrumento, una herramienta digital.
+            Basándome en tus respuestas, crearé una guía
+            para mostrarte las psicoterapias que mejor se alinean contigo.
             
-            Basándome en tus respuestas,
-            buscaré perspectivas, formas y visiones que psicólogos han creado
-            para explicar y ayudar.
-            
-            Crearé orientaciones únicas para ti, que se ajusten a tu manera de ver la realidad.
-            Te mostraré distintos lentes para observar.
-            
-            Mi función es crear este espacio.
-            Mi servicio es gratuito.
-            Sólo debes conectar.
+            Conéctate y descubre nuevas perspectivas.
+            Yo soy tu puente hacia una nueva visión.
         `;
         let index = 0;
 
-        function escribirTexto(elemento, texto, callback) {
+        function escribirTexto(elemento, texto, delay = 70) {
             if (index < texto.length) {
-                // Reemplazar saltos de línea por HTML sin mostrar <br>
-                const char = texto.charAt(index) === "\n" ? "<br>" : texto.charAt(index);
-                elemento.innerHTML += char;
+                elemento.innerHTML += texto.charAt(index);
                 index++;
-                setTimeout(() => escribirTexto(elemento, texto, callback), 30); // Acelera el efecto de escritura
-            } else if (callback) {
-                index = 0; // Reiniciar índice para el siguiente texto
-                setTimeout(callback, 500); // Pausa antes de comenzar con el siguiente
+                setTimeout(() => escribirTexto(elemento, texto, delay), delay);
             }
         }
 
-        window.onload = () => {
-            escribirTexto(titulo, textoTitulo, () => escribirTexto(parrafo, textoParrafo));
-        };
+        escribirTexto(titulo, textoTitulo, 150);  // Animación título
+        setTimeout(() => {
+            index = 0; // Resetear el índice para el siguiente texto
+            escribirTexto(parrafo, textoParrafo, 50);  // Animación párrafo
+        }, 1500);
+
+        // Reproducir sonido al hacer clic en el botón
+        document.getElementById("btn-conectar").addEventListener("click", () => {
+            const audio = document.getElementById("audio-click");
+            audio.play();
+        });
     </script>
 </body>
 </html>
+
