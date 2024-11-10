@@ -83,6 +83,50 @@
             to { opacity: 1; }
         }
 
+        /* Ventana emergente de Conectar */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+            overflow: auto;
+            padding-top: 60px;
+            color: white;
+        }
+
+        .modal-content {
+            background-color: #333;
+            padding: 20px;
+            margin: 5% auto;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .modal-header {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .modal-body {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        .modal-footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Mostrar ventana emergente */
+        .modal.show {
+            display: block;
+        }
+
     </style>
 </head>
 <body>
@@ -90,9 +134,41 @@
         <h1 class="typing-text">Bienvenido a Bienestar IA - Modo Alfa</h1>
         <p class="slogan">"Un espacio de apoyo, descubrimiento y guía emocional, potenciado por inteligencia artificial".</p>
         <p class="footer-note">Descubre una nueva visión del bienestar. Conéctate y da el primer paso.</p>
-        <button class="btn-heartbeat" onclick="alert('Conectando...')">Conectar</button>
+        
+        <!-- Botón de Conectar -->
+        <button class="btn-heartbeat" onclick="showModal()">Conectar</button>
+        
+        <!-- Modal de Conexión -->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <p>Conectando...</p>
+                </div>
+                <div class="modal-body">
+                    <p>Como estamos en <strong>Modo Alfa</strong>, nuestro sistema funciona a través de un formulario de Google. Este formulario nos ayudará a entender mejor tu situación y ofrecerte un informe automatizado a la brevedad.</p>
+                    <p><strong>¿Qué harás?</strong> Responderás tres preguntas clave para que podamos orientarte correctamente. Estas preguntas están relacionadas con tu bienestar emocional y psicoterapéutico, para poder proporcionarte las mejores recomendaciones basadas en las 30 visiones de psicoterapia que trabajamos. Cada visión es única, porque cada persona es un universo.</p>
+                    <p><strong>¿Por qué es importante?</strong> Al completar el formulario, nos ayudarás a entender tu situación y te proporcionaremos un informe detallado que te guiará en el camino hacia el bienestar.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd4ezktO9KrqSvanqdVJ5H_UFWQ_KlGLItZhxBlCpZ8Vz8QJQ/viewform" target="_blank" class="btn-heartbeat">Ir al Formulario</a>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script>
+        // Función para mostrar la ventana emergente
+        function showModal() {
+            var modal = document.getElementById("myModal");
+            modal.classList.add("show");
+        }
+
+        // Función para cerrar la ventana emergente
+        function closeModal() {
+            var modal = document.getElementById("myModal");
+            modal.classList.remove("show");
+        }
+    </script>
 </body>
 </html>
-
-
