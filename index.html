@@ -5,153 +5,175 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenido a IAPI</title>
     <style>
+        /* Importación de fuentes */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap');
-
-        /* Estilos generales */
+        
+        /* Estilos generales del cuerpo */
         body {
-            margin: 0;
-            padding: 0;
             font-family: 'Poppins', sans-serif;
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background: linear-gradient(135deg, #2c3e50, #3498db);
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle, #34495e, #2c3e50);
             color: #ecf0f1;
-            overflow: hidden;
         }
 
         /* Caja principal */
-        .overlay {
+        .container {
             background-color: rgba(0, 0, 0, 0.85);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 40px;
+            width: 90%;
             max-width: 800px;
             text-align: center;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-            animation: slideIn 1.5s ease-out;
+            animation: fadeInBox 1.5s ease-out;
         }
 
-        /* Animación de caja */
-        @keyframes slideIn {
-            0% { transform: translateY(-50px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
+        /* Animación de entrada */
+        @keyframes fadeInBox {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        /* Encabezado animado */
+        /* Título principal */
         h1 {
-            font-size: 36px;
+            font-size: 38px;
             font-weight: 800;
             color: #e74c3c;
             margin-bottom: 20px;
-            text-shadow: 0 3px 5px rgba(231, 76, 60, 0.5);
-            animation: fadeIn 2s;
+            text-shadow: 0 3px 6px rgba(231, 76, 60, 0.5);
+            letter-spacing: 1.5px;
+            animation: fadeInTitle 1s ease-in-out forwards;
         }
 
-        /* Texto del párrafo */
-        p {
-            font-weight: 300;
+        /* Animación del título */
+        @keyframes fadeInTitle {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Texto de párrafo */
+        .intro-text {
             font-size: 18px;
+            font-weight: 300;
             color: #ecf0f1;
-            line-height: 1.6;
+            line-height: 1.8;
             text-align: justify;
-            animation: fadeIn 2.5s;
-            margin: 0 auto 20px;
+            opacity: 0;
+            animation: fadeInText 2s ease-in-out forwards;
+            animation-delay: 1s;
+        }
+
+        /* Animación del texto de párrafo */
+        @keyframes fadeInText {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* Botón interactivo */
         #btn-conectar {
-            font-size: 18px;
-            background: #e74c3c;
+            font-size: 20px;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
             color: #ffffff;
-            border: none;
-            padding: 15px 30px;
+            padding: 15px 35px;
             border-radius: 8px;
+            border: none;
             cursor: pointer;
-            font-weight: 600;
-            box-shadow: 0 10px 20px rgba(231, 76, 60, 0.4);
-            transition: all 0.3s ease;
-            animation: bounce 1s infinite alternate;
-            text-decoration: none;
-        }
-
-        #btn-conectar:hover {
-            background: #c0392b;
-            box-shadow: 0 15px 30px rgba(192, 57, 43, 0.5);
-        }
-
-        /* Efecto de rebote */
-        @keyframes bounce {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-8px); }
-        }
-
-        /* Animaciones */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        /* Indicador de versión */
-        .modo-alfa {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #f39c12;
-            color: #ffffff;
-            font-size: 14px;
-            padding: 5px 12px;
-            border-radius: 5px;
             font-weight: bold;
-            letter-spacing: 0.5px;
-            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 20px rgba(231, 76, 60, 0.4);
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            animation: fadeInButton 2.5s ease forwards;
+            animation-delay: 2s;
+            margin-top: 20px;
+            letter-spacing: 1px;
+        }
+
+        /* Efecto hover del botón */
+        #btn-conectar:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 30px rgba(192, 57, 43, 0.6);
+        }
+
+        /* Animación del botón */
+        @keyframes fadeInButton {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Indicación de versión alfa */
+        .version-label {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #f39c12;
+            color: #ffffff;
+            padding: 5px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
 <body>
-    <div class="overlay">
-        <div class="modo-alfa">Versión Alfa</div>
-        <h1 id="titulo-animado"></h1>
-        <p id="parrafo-animado"></p>
+
+    <!-- Contenedor principal con capa de introducción -->
+    <div class="container">
+        <div class="version-label">Versión Alfa</div>
+        
+        <!-- Título animado -->
+        <h1>Bienvenido a IAPI</h1>
+        
+        <!-- Texto de introducción -->
+        <p class="intro-text">
+            ¿Buscas orientación en el mundo de las psicoterapias? <br>
+            Aquí en IAPI, unimos el poder de la psicología y la inteligencia artificial para guiarte en un viaje de autodescubrimiento. 
+            Nuestro objetivo es crear un sistema que se ajuste a tus necesidades personales, alineando las psicoterapias que mejor se adaptan a ti. 
+            ¡Conéctate y descubre una nueva perspectiva para tu bienestar mental! Este es solo el primer paso de un viaje que tú eliges. 
+            Yo seré tu guía, tu apoyo, y tu aliado en esta fase inicial hacia una vida plena y equilibrada.
+        </p>
+        
+        <!-- Botón interactivo para conectar -->
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSd4ezktO9KrqSvanqdVJ5H_UFWQ_KlGLItZhxBlCpZ8Vz8QJQ/viewform" id="btn-conectar" target="_blank">Conectar</a>
     </div>
 
-    <!-- Efecto de sonido e interacción animada -->
-    <audio id="audio-click" src="https://example.com/click-sound.mp3" preload="auto"></audio>
+    <!-- Efecto de sonido al hacer clic -->
+    <audio id="click-sound" src="https://example.com/click-sound.mp3" preload="auto"></audio>
+
     <script>
-        // Animación de escritura
-        const titulo = document.getElementById("titulo-animado");
-        const parrafo = document.getElementById("parrafo-animado");
-        const textoTitulo = "Bienvenido a IAPI";
-        const textoParrafo = `
-            Aquí encontrarás una guía personalizada en psicoterapias,
-            creada para ayudarte a encontrar la orientación perfecta en tu proceso.
-            Conéctate y descubre nuevas perspectivas.
-            ¡Soy tu puente hacia una nueva visión de bienestar!
-        `;
-        let index = 0;
-
-        function escribirTexto(elemento, texto, delay = 60) {
-            if (index < texto.length) {
-                elemento.innerHTML += texto.charAt(index);
-                index++;
-                setTimeout(() => escribirTexto(elemento, texto, delay), delay);
-            }
-        }
-
-        escribirTexto(titulo, textoTitulo, 120);  // Título con efecto de escritura
-        setTimeout(() => {
-            index = 0; // Resetear índice
-            escribirTexto(parrafo, textoParrafo, 50);  // Párrafo animado
-        }, 1500);
-
-        // Reproducir sonido al hacer clic en el botón
+        // Botón "Conectar" con sonido al hacer clic
         document.getElementById("btn-conectar").addEventListener("click", () => {
-            const audio = document.getElementById("audio-click");
+            const audio = document.getElementById("click-sound");
             audio.play();
+        });
+
+        // Función para animación de letras
+        const typeText = (element, text, delay = 80) => {
+            let i = 0;
+            const interval = setInterval(() => {
+                element.innerHTML += text.charAt(i);
+                i++;
+                if (i >= text.length) clearInterval(interval);
+            }, delay);
+        };
+
+        // Texto dinámico en h1 y p
+        document.addEventListener("DOMContentLoaded", () => {
+            const title = document.querySelector("h1");
+            const paragraph = document.querySelector(".intro-text");
+
+            // Animación de texto en título y párrafo
+            typeText(title, "Bienvenido a IAPI", 100);
+            setTimeout(() => {
+                typeText(paragraph, "¿Buscas orientación en el mundo de las psicoterapias? Aquí en IAPI, unimos el poder de la psicología y la inteligencia artificial para guiarte en un viaje de autodescubrimiento. Nuestro objetivo es crear un sistema que se ajuste a tus necesidades personales, alineando las psicoterapias que mejor se adaptan a ti. ¡Conéctate y descubre una nueva perspectiva para tu bienestar mental! Este es solo el primer paso de un viaje que tú eliges. Yo seré tu guía, tu apoyo, y tu aliado en esta fase inicial hacia una vida plena y equilibrada.", 50);
+            }, 1500);
         });
     </script>
 </body>
 </html>
-
 
