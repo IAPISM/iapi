@@ -3,87 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Bienvenido a IAPI!</title>
+    <title>Bienvenido a IAPI</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap');
+
         /* Estilos generales */
         body {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 15px;
-            color: #34495e;
-            line-height: 1.5;
             margin: 0;
             padding: 0;
-            text-align: center;
-            background-color: #f0f3f4;
+            font-family: 'Poppins', sans-serif;
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100vh;
-        }
-        
-        .overlay {
-            background-color: rgba(255, 255, 255, 0.98);
-            border-radius: 12px;
-            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
-            max-width: 800px;
-            padding: 40px;
-            text-align: center;
-            position: relative;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: #ecf0f1;
             overflow: hidden;
+        }
+
+        /* Caja principal */
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.85);
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 800px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            animation: slideIn 1.5s ease-out;
+        }
+
+        /* Animación de caja */
+        @keyframes slideIn {
+            0% { transform: translateY(-50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
         }
 
         /* Encabezado animado */
         h1 {
             font-size: 36px;
-            color: #2c3e50;
+            font-weight: 800;
+            color: #e74c3c;
             margin-bottom: 20px;
+            text-shadow: 0 3px 5px rgba(231, 76, 60, 0.5);
             animation: fadeIn 2s;
         }
 
-        /* Párrafo animado */
+        /* Texto del párrafo */
         p {
             font-weight: 300;
-            color: #34495e;
+            font-size: 18px;
+            color: #ecf0f1;
+            line-height: 1.6;
             text-align: justify;
-            margin: 0 auto 20px;
             animation: fadeIn 2.5s;
+            margin: 0 auto 20px;
         }
 
         /* Botón interactivo */
         #btn-conectar {
-            font-size: 20px;
-            background-color: #2980b9;
+            font-size: 18px;
+            background: #e74c3c;
             color: #ffffff;
-            border: 2px solid #2980b9;
-            padding: 12px 24px;
+            border: none;
+            padding: 15px 30px;
             border-radius: 8px;
-            display: block;
-            margin: 20px auto;
             cursor: pointer;
-            text-decoration: none;
-            font-weight: bold;
-            box-shadow: 0 8px 20px rgba(0, 122, 255, 0.3);
+            font-weight: 600;
+            box-shadow: 0 10px 20px rgba(231, 76, 60, 0.4);
             transition: all 0.3s ease;
-            animation: pulse 2s infinite;
+            animation: bounce 1s infinite alternate;
+            text-decoration: none;
         }
 
         #btn-conectar:hover {
-            background-color: #3498db;
-            border-color: #3498db;
-            box-shadow: 0 10px 25px rgba(0, 122, 255, 0.5);
+            background: #c0392b;
+            box-shadow: 0 15px 30px rgba(192, 57, 43, 0.5);
+        }
+
+        /* Efecto de rebote */
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-8px); }
         }
 
         /* Animaciones */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
         /* Indicador de versión */
@@ -92,13 +98,13 @@
             top: 10px;
             right: 10px;
             background-color: #f39c12;
-            color: #fff;
-            font-size: 12px;
-            padding: 4px 10px;
+            color: #ffffff;
+            font-size: 14px;
+            padding: 5px 12px;
             border-radius: 5px;
             font-weight: bold;
             letter-spacing: 0.5px;
-            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
@@ -116,20 +122,16 @@
         // Animación de escritura
         const titulo = document.getElementById("titulo-animado");
         const parrafo = document.getElementById("parrafo-animado");
-        const textoTitulo = "IAPI Salud Mental";
+        const textoTitulo = "Bienvenido a IAPI";
         const textoParrafo = `
-            ¿Necesitas orientación en el mundo de las psicoterapias?
-            Aquí encontrarás el apoyo que necesitas.
-            
-            Basándome en tus respuestas, crearé una guía
-            para mostrarte las psicoterapias que mejor se alinean contigo.
-            
+            Aquí encontrarás una guía personalizada en psicoterapias,
+            creada para ayudarte a encontrar la orientación perfecta en tu proceso.
             Conéctate y descubre nuevas perspectivas.
-            Yo soy tu puente hacia una nueva visión.
+            ¡Soy tu puente hacia una nueva visión de bienestar!
         `;
         let index = 0;
 
-        function escribirTexto(elemento, texto, delay = 70) {
+        function escribirTexto(elemento, texto, delay = 60) {
             if (index < texto.length) {
                 elemento.innerHTML += texto.charAt(index);
                 index++;
@@ -137,10 +139,10 @@
             }
         }
 
-        escribirTexto(titulo, textoTitulo, 150);  // Animación título
+        escribirTexto(titulo, textoTitulo, 120);  // Título con efecto de escritura
         setTimeout(() => {
-            index = 0; // Resetear el índice para el siguiente texto
-            escribirTexto(parrafo, textoParrafo, 50);  // Animación párrafo
+            index = 0; // Resetear índice
+            escribirTexto(parrafo, textoParrafo, 50);  // Párrafo animado
         }, 1500);
 
         // Reproducir sonido al hacer clic en el botón
@@ -151,4 +153,5 @@
     </script>
 </body>
 </html>
+
 
