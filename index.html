@@ -3,186 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienestar IA - Modo Alfa</title>
+    <meta name="description" content="Servicios de salud mental online personalizados, integrando psicología y tecnología.">
+    <meta name="keywords" content="psicología, psicoterapia, Zulliger, Rorschach, TRO, adicciones, salud mental, IA">
+    <meta name="author" content="IAPY - Sebastián y Natalia">
+    <title>Salud Mental Online - Personalizado para Ti</title>
     <style>
-        /* Estilos generales */
+        :root {
+            --primary-color: #6F4E37; /* Mocha Mousse */
+            --secondary-color: #D8A47F; /* Tono cálido */
+            --accent-color: #B28451; /* Dorado suave */
+            --background-color: #FFF8F0;
+            --font-family: "Arial", sans-serif;
+        }
         body {
-            font-family: 'Courier New', Courier, monospace;
-            color: #ffffff;
-            background: linear-gradient(135deg, #004e92, #000428);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            font-family: var(--font-family);
             margin: 0;
-            padding: 0 5px; /* Ajuste para evitar bordes en móviles */
-            overflow: hidden;
+            padding: 0;
+            background-color: var(--background-color);
+            color: #333;
         }
-
-        /* Estructura adaptable para diferentes pantallas */
-        .container {
+        header {
+            background: var(--primary-color);
+            color: #FFF;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+        nav a {
+            color: #FFF;
+            margin: 0 10px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .hero {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: #FFF;
+            padding: 80px 20px;
             text-align: center;
-            max-width: 95vw;
+        }
+        .hero h1 {
+            font-size: 2.5em;
+            margin: 0 0 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+        }
+        .cta-button {
+            background-color: var(--accent-color);
+            color: #FFF;
+            padding: 12px 25px;
+            font-size: 1em;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: var(--primary-color);
+        }
+        .services {
+            padding: 50px 20px;
+            background-color: var(--secondary-color);
+            color: #333;
+        }
+        .service {
+            background-color: #FFF;
+            border: 1px solid #DDD;
+            border-radius: 10px;
+            margin: 20px auto;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
-            background: rgba(0, 0, 0, 0.6); /* Fondo semitransparente */
+            max-width: 600px;
+            text-align: left;
         }
-
-        /* Efecto máquina de escribir */
-        .typing-text {
-            font-size: 1.4rem;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 3px solid #ffffff;
-            animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
-            max-width: 100%;
+        .service h3 {
+            color: var(--primary-color);
         }
-
-        @keyframes typing { from { width: 0; } to { width: 100%; } }
-        @keyframes blink-caret { from, to { border-color: transparent; } 50% { border-color: #ffffff; } }
-
-        /* Botón de Conectar con efecto de latido */
-        .btn-heartbeat {
-            background: linear-gradient(135deg, #00acee, #007bb5);
-            color: #ffffff;
-            font-size: 1.3rem;
-            font-weight: bold;
-            padding: 1rem 1.5rem;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            animation: heartbeat 1.5s infinite;
-            text-transform: uppercase;
-            display: inline-block;
-            margin-top: 20px;
+        .service p {
+            margin: 10px 0;
         }
-
-        @keyframes heartbeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
-
-        /* Estilos adicionales */
-        .slogan {
-            font-size: 1.1rem;
-            margin-top: 0.5rem;
-            color: #b0d4f1;
-            animation: fadeIn 2s ease-out;
-        }
-
-        .footer-note {
-            font-size: 0.9rem;
-            color: #80b3e8;
-            margin-top: 20px;
-            animation: fadeIn 3s ease-out;
-        }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        /* Ventana emergente */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            padding-top: 5vh;
-            overflow: auto;
-        }
-
-        .modal-content {
-            background-color: #333;
-            padding: 15px;
-            margin: auto;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 450px;
-            color: #ffffff;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
-            animation: fadeInModal 0.5s ease;
-        }
-
-        .modal-header {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #00acee;
-        }
-
-        .modal-body {
-            font-size: 1rem;
+        .service a {
+            display: block;
             margin-top: 10px;
-            color: #ffffff;
-        }
-
-        /* Estilos de párrafos alternos en ventana emergente */
-        .modal-body p:nth-child(odd) { color: #b3cde0; }
-        .modal-body p:nth-child(even) { color: #d9f2ff; }
-
-        .modal-footer {
-            margin-top: 20px;
             text-align: center;
+            color: #FFF;
+            background-color: var(--accent-color);
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
         }
-
-        .close {
-            color: #bbb;
-            float: right;
-            font-size: 1.5rem;
-            font-weight: bold;
-            cursor: pointer;
+        .service a:hover {
+            background-color: var(--primary-color);
         }
-
-        .close:hover, .close:focus { color: #ffffff; text-decoration: none; }
-
-        /* Mostrar ventana emergente */
-        .modal.show { display: block; }
-
-        /* Animación para la ventana emergente */
-        @keyframes fadeInModal {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+        footer {
+            background-color: var(--primary-color);
+            color: #FFF;
+            padding: 15px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="typing-text">Bienvenido a IAPI - Modo Alfa</h1>
-        <p class="slogan">"Un espacio de apoyo, descubrimiento y guía emocional, potenciado por inteligencia artificial".</p>
-        <p class="footer-note">Descubre una nueva visión del bienestar. Conéctate y da el primer paso.</p>
-        
-        <!-- Botón de Conectar -->
-        <button class="btn-heartbeat" onclick="showModal()">Conectar</button>
-        
-        <!-- Modal de Conexión -->
-        <div id="myModal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal()">&times;</span>
-                <div class="modal-header">
-                    <p>Conectando...</p>
-                </div>
-                <div class="modal-body">
-                    <p>Como estamos en <strong>Modo Alfa</strong>, nuestro sistema funciona a través de un formulario de Google. Este formulario nos ayudará a entender mejor tu situación y ofrecerte un informe automatizado a la brevedad.</p>
-                    <p><strong>¿Qué harás?</strong> Responderás tres preguntas clave para que podamos orientarte correctamente. Estas preguntas están relacionadas con tu bienestar emocional y psicoterapéutico, para poder proporcionarte las mejores recomendaciones basadas en las 30 visiones de psicoterapia que trabajamos.</p>
-                    <p><strong>¿Por qué es importante?</strong> Al completar el formulario, nos ayudarás a entender tu situación y te proporcionaremos un informe detallado que te guiará en el camino hacia Resolver.</p>
-                </div>
-                <div class="modal-footer">
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd4ezktO9KrqSvanqdVJ5H_UFWQ_KlGLItZhxBlCpZ8Vz8QJQ/viewform" target="_blank" class="btn-heartbeat">Ir al Formulario</a>
-                </div>
-            </div>
+    <header>
+        <h1>IAPY - Salud Mental Online</h1>
+        <nav>
+            <a href="#">Inicio</a>
+            <a href="#services">Servicios</a>
+            <a href="#contact">Contacto</a>
+        </nav>
+    </header>
+    <section class="hero">
+        <h1>Bienestar Mental Personalizado</h1>
+        <p>Conectamos Psicología, Tecnología y tu Bienestar.</p>
+        <a href="https://forms.gle/formulario" class="cta-button">Conectar</a>
+    </section>
+    <section id="services" class="services">
+        <h2>Nuestros Servicios</h2>
+        <div class="service">
+            <h3>Psicoterapia Sistémica Breve</h3>
+            <p><strong>Especialista:</strong> Sebastián Salazar</p>
+            <p><strong>Pruebas:</strong> Zulliger, TRO</p>
+            <p>Enfoque efectivo y orientado a resultados rápidos.</p>
+            <a href="https://forms.gle/agendarSebastian">Agendar Hora</a>
         </div>
-    </div>
-
-    <script>
-        // Función para mostrar la ventana emergente
-        function showModal() {
-            document.getElementById("myModal").classList.add("show");
-        }
-
-        // Función para cerrar la ventana emergente
-        function closeModal() {
-            document.getElementById("myModal").classList.remove("show");
-        }
-    </script>
+        <div class="service">
+            <h3>Tratamiento de Adicciones</h3>
+            <p><strong>Especialista:</strong> Natalia Vaquedano</p>
+            <p><strong>Pruebas:</strong> Rorschach, Técnicas Médicas</p>
+            <p>Atención integral para adolescentes y adultos.</p>
+            <a href="https://forms.gle/agendarNatalia">Agendar Hora</a>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2025 IAPY. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>
+
